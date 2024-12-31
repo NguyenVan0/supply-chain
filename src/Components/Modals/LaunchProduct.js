@@ -28,6 +28,8 @@ console.log('pinataApiKey', pinataApiKey, pinataSecretApiKey)
   const [product, setProduct] = useState({
     id: "",
     title: "",
+    quantity: "",
+    unit: "",
     selectedRawProducts: {},
     image: {
       url: "",
@@ -71,7 +73,7 @@ console.log('pinataApiKey', pinataApiKey, pinataSecretApiKey)
           pinata_secret_api_key: pinataSecretApiKey,
         },
       });
-      return res.data.IpfsHash; // Trả về CID của file
+      return res.data.IpfsHash; 
     } catch (error) {
       console.error("Lỗi upload Pinata:", error);
       throw new Error("Upload file lên Pinata thất bại.");
@@ -147,7 +149,7 @@ console.log('product', product)
       }
 
       await contractState.productContract.methods
-        .add(product.id, product.title, selectedRP, imageCid)
+        .add(product.id, product.title, product.quantity, product.unit, selectedRP, imageCid)
         .send({ from: authState.address });
 
       await contractState.manufacturerContract.methods
@@ -159,6 +161,8 @@ console.log('product', product)
       setProduct({
         id: "",
         title: "",
+        quantity: "",
+        unit: "",
         selectedRawProducts: {},
         image: {
           url: "",
@@ -228,7 +232,35 @@ console.log('product', product)
             />
           </InputGroup>
           <br />
-
+{/* Nhập tiêu đề sản phẩm */}
+<InputGroup>
+            <InputGroupText>Số lượng sản phẩm</InputGroupText>
+            <Input
+              placeholder="Nhập số lượng sản phẩm"
+              value={product.quantity}
+              onChange={(e) =>
+                setProduct((product) => ({
+                  ...product,
+                  quantity: e.target.value,
+                }))
+              }
+            />
+          </InputGroup>
+          <br />
+<InputGroup>
+            <InputGroupText>Đơn vị tính</InputGroupText>
+            <Input
+              placeholder="Nhập đơn vị tính"
+              value={product.unit}
+              onChange={(e) =>
+                setProduct((product) => ({
+                  ...product,
+                  unit: e.target.value,
+                }))
+              }
+            />
+          </InputGroup>
+          <br />
           {/* Chọn nguyên liệu thô */}
           <div className="row mt-2 justify-content-around">
             {Object.keys(manufacturerRP).map((rawProductIndex) => {

@@ -1,4 +1,3 @@
-// import product_default from '../../Assests/Images/product_default.jpg';
 import Rating from '../Rating';
 
 const ProductCard = ({ product }) => {
@@ -22,6 +21,13 @@ const ProductCard = ({ product }) => {
           <span className="card-key">Tên: </span>
           <span className="card-value">{product.item["title"]}</span>
           <br />
+          <div className="d-flex align-items-center">
+            <span className="card-key">Số lượng: </span>
+            <span className="card-value">{product.item["quantity"]}</span>
+            &nbsp;&nbsp;
+            <span className="card-key">Đơn vị: </span>
+            <span className="card-value">{product.item["unit"]}</span>
+          </div>
           <span className="card-key">Nhà sản xuất: </span>
           <span className="card-value">{product.manufacturer["name"]}</span>
           <br />
@@ -32,22 +38,14 @@ const ProductCard = ({ product }) => {
           <br />
           <span className="d-flex justify-content-around">
             {product.manufacturer.isVerified ? (
-              <span className="">
-                <span className="badge bg-success">Đã xác minh</span>
-              </span>
+              <span className="badge bg-success">Đã xác minh</span>
             ) : (
-              <span className="">
-                <span className="badge bg-warning">Chưa xác minh</span>
-              </span>
+              <span className="badge bg-warning">Chưa xác minh</span>
             )}
             {product.manufacturer.isRenewableUsed ? (
-              <span className="">
-                <span className="badge bg-success">Thân thiện với môi trường</span>
-              </span>
+              <span className="badge bg-success">Thân thiện với môi trường</span>
             ) : (
-              <span className="">
-                <span className="badge bg-warning">Không thân thiện với môi trường</span>
-              </span>
+              <span className="badge bg-warning">Không thân thiện với môi trường</span>
             )}
           </span>
         </div>

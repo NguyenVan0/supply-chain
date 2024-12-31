@@ -84,12 +84,15 @@ const Product = () => {
       "label": "Sản phẩm chính hãng"
     }
   ]
+  const imageUrl = product.item["image_url"]
+  ? `https://gateway.pinata.cloud/ipfs/${product.item["image_url"]}` : '';
 
   return (
     <div className="wrapper">
       <div className="row top-wrapper">
         <div className="col-12 col-md-4 tw-left">
-          <img src={product.item["image_url"]} width="100%"/>
+        <img 
+            src={imageUrl} width="100%"/>
         </div>
         <div className="col-12 col-md-8 tw-right">
           <span className="tw-heading1">

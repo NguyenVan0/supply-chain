@@ -48,7 +48,7 @@ const Farmer = () => {
         <div>Đang tải</div>}
       </div>
       <div className="d-flex justify-content-center">
-        <input type="text" placeholder="Raw product" onChange={
+        <input type="text" placeholder="Sản phẩm thô" onChange={
           (e) => {
             setAddRPState(e.target.value);
           }

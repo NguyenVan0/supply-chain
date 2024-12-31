@@ -25,6 +25,8 @@ contract Product {
   struct Item{
     uint256 id;
     string title;
+    uint256 quantity;
+    string unit;
     address manufacturer;
     address currentOwner;
     address lastOwner;
@@ -50,12 +52,14 @@ contract Product {
     _nextReviewId = 0;
   }
 
-  function add(uint256 _id, string memory _title, RawProduct[] memory _rawProducts, string memory image_url) public returns (bool){
+  function add(uint256 _id, string memory _title, uint256 _quantity, string memory _unit, RawProduct[] memory _rawProducts, string memory image_url) public returns (bool){
     address _manufacturer = msg.sender;
     require (_manufacturer != address(0), "Product::add: Manufacturer cannot be null");
     _items[_id] = Item({
       id: _id,
       title: _title,
+      quantity: _quantity,
+      unit: _unit,
       manufacturer: _manufacturer,
       currentOwner: _manufacturer,
       lastOwner: address(0),
